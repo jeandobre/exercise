@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Problem1 {
+public class SequencePrinter {
 
 	static final private String TEXT_DIVISIBLE_BY_15 = "Visual Nuts";
 	static final private String TEXT_DIVISIBLE_BY_5 = "Nuts";
@@ -15,7 +15,7 @@ public class Problem1 {
 
 	private List<String> out;
 
-	public Problem1(Integer lastNumber) {
+	public SequencePrinter(Integer lastNumber) {
 		this.lastNumber = lastNumber;
 	}
 
