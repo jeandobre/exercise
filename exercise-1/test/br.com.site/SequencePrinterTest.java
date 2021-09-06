@@ -1,8 +1,12 @@
 package br.com.site;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -16,21 +20,34 @@ public class SequencePrinterTest {
 
 	static final private int totalElements = 100;
 
+	private final ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+	private final PrintStream originalOutput = System.out;
+
 	@BeforeClass
 	public static void init() {
 		sequencePrinter = new SequencePrinter(totalElements);
-		sequencePrinter.generate();
+	}
+
+	@Before
+	public void setUpStream() {
+		System.setOut(new PrintStream(outputContent));
+	}
+
+	@After
+	public void restoreStream(){
+		System.setOut(originalOutput);
 	}
 
 	@Test
 	public void shouldBePrintedCorrect() {
-		List<String> sequence = sequencePrinter.getAsList();
-		assertEquals(totalElements, sequence.size());
-		assertEquals("1", sequence.get(0));
-		assertEquals(TEXT_DIVISIBLE_BY_3, sequence.get(2));
-		assertEquals(TEXT_DIVISIBLE_BY_5, sequence.get(4));
-		assertEquals(TEXT_DIVISIBLE_BY_15, sequence.get(14));
-		assertEquals(TEXT_DIVISIBLE_BY_5, sequence.get(totalElements - 1));
+		sequencePrinter.print();
+		String[] sequence = outputContent.toString().split("\n");
+		assertEquals(totalElements, sequence.length);
+		assertEquals("1", sequence[0]);
+		assertEquals(TEXT_DIVISIBLE_BY_3, sequence[2]);
+		assertEquals(TEXT_DIVISIBLE_BY_5, sequence[4]);
+		assertEquals(TEXT_DIVISIBLE_BY_15, sequence[14]);
+		assertEquals(TEXT_DIVISIBLE_BY_5, sequence[totalElements - 1]);
 	}
 
 	@Test

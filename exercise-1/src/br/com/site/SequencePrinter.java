@@ -11,32 +11,21 @@ public class SequencePrinter {
 	static final private String TEXT_DIVISIBLE_BY_3 = "Visual";
 
 	private final Integer FIRST_NUMBER = 1;
-	private final Integer lastNumber;
+	private final Integer maxNumber;
 
-	private List<String> out;
-
-	public SequencePrinter(Integer lastNumber) {
-		this.lastNumber = lastNumber;
+	public SequencePrinter(Integer maxNumber) {
+		this.maxNumber = maxNumber;
 	}
 
-	void generate() {
-		this.out = new ArrayList<>();
-		for(int count = FIRST_NUMBER; count <= lastNumber; count++) {
+	void print() {
+		for(int count = FIRST_NUMBER; count <= maxNumber; count++) {
 			String item = String.valueOf(count);
 			if(isDivisibleBy15(count)) item = TEXT_DIVISIBLE_BY_15;
 			else if(isDivisibleBy5(count)) item = TEXT_DIVISIBLE_BY_5;
 			else if(isDivisibleBy3(count)) item = TEXT_DIVISIBLE_BY_3;
 
-			this.out.add(item);
+			System.out.println(item);
 		}
-	}
-
-	void printLn() {
-		this.out.forEach(System.out::println);
-	}
-
-	protected List<String> getAsList() {
-		return Collections.unmodifiableList(out);
 	}
 
 	protected boolean isDivisibleBy15(int number) {
