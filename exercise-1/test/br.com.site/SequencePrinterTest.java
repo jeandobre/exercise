@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class SequencePrinterTest {
 
-	private static SequencePrinter problem1;
+	private static SequencePrinter sequencePrinter;
 	static final private String TEXT_DIVISIBLE_BY_15 = "Visual Nuts";
 	static final private String TEXT_DIVISIBLE_BY_5 = "Nuts";
 	static final private String TEXT_DIVISIBLE_BY_3 = "Visual";
@@ -18,13 +18,13 @@ public class SequencePrinterTest {
 
 	@BeforeClass
 	public static void init() {
-		problem1 = new SequencePrinter(totalElements);
-		problem1.generate();
+		sequencePrinter = new SequencePrinter(totalElements);
+		sequencePrinter.generate();
 	}
 
 	@Test
 	public void shouldBePrintedCorrect() {
-		List<String> sequence = problem1.getAsList();
+		List<String> sequence = sequencePrinter.getAsList();
 		assertEquals(totalElements, sequence.size());
 		assertEquals("1", sequence.get(0));
 		assertEquals(TEXT_DIVISIBLE_BY_3, sequence.get(2));
@@ -35,37 +35,37 @@ public class SequencePrinterTest {
 
 	@Test
 	public void shouldBeDivisibleByThree() {
-		assertTrue(problem1.isDivisibleBy3(3));
-		assertTrue(problem1.isDivisibleBy3(33));
+		assertTrue(sequencePrinter.isDivisibleBy3(3));
+		assertTrue(sequencePrinter.isDivisibleBy3(33));
 	}
 
 	@Test
 	public void shouldNotBeDivisibleByThree() {
-		assertFalse(problem1.isDivisibleBy3(5));
-		assertFalse(problem1.isDivisibleBy3(94));
+		assertFalse(sequencePrinter.isDivisibleBy3(5));
+		assertFalse(sequencePrinter.isDivisibleBy3(94));
 	}
 
 	@Test
 	public void shouldBeDivisibleByFive() {
-		assertTrue(problem1.isDivisibleBy5(5));
-		assertTrue(problem1.isDivisibleBy5(25));
+		assertTrue(sequencePrinter.isDivisibleBy5(5));
+		assertTrue(sequencePrinter.isDivisibleBy5(25));
 	}
 
 	@Test
 	public void shouldNotBeDivisibleByFive() {
-		assertFalse(problem1.isDivisibleBy5(9));
-		assertFalse(problem1.isDivisibleBy5(41));
+		assertFalse(sequencePrinter.isDivisibleBy5(9));
+		assertFalse(sequencePrinter.isDivisibleBy5(41));
 	}
 
 	@Test
 	public void shouldBeDivisibleByFifteen() {
-		assertTrue(problem1.isDivisibleBy15(30));
-		assertTrue(problem1.isDivisibleBy15(90));
+		assertTrue(sequencePrinter.isDivisibleBy15(30));
+		assertTrue(sequencePrinter.isDivisibleBy15(90));
 	}
 
 	@Test
 	public void shouldNotBeDivisibleByFifteen() {
-		assertFalse(problem1.isDivisibleBy15(9));
-		assertFalse(problem1.isDivisibleBy15(41));
+		assertFalse(sequencePrinter.isDivisibleBy15(9));
+		assertFalse(sequencePrinter.isDivisibleBy15(41));
 	}
 }
