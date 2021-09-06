@@ -1,9 +1,5 @@
 package br.com.site;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class SequencePrinter {
 
 	static final private String TEXT_DIVISIBLE_BY_15 = "Visual Nuts";
