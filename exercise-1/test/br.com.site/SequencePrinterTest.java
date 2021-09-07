@@ -35,18 +35,30 @@ public class SequencePrinterTest {
 	}
 
 	@Test
-	public void shouldBePrintedCorrectlySomeRandomElements() {
-		assertEquals("1", sequence[0]);
-		assertEquals(TEXT_DIVISIBLE_BY_3, sequence[2]);
-		assertEquals(TEXT_DIVISIBLE_BY_5, sequence[4]);
-		assertEquals(TEXT_DIVISIBLE_BY_3_AND_5, sequence[14]);
-		assertEquals(TEXT_DIVISIBLE_BY_5, sequence[totalElements - 1]);
+	public void shouldBePrintedCorrectlyAllNumbers() {
+		for(int i = 1; (i % 3 != 0) && (i % 5 != 0) && i <= totalElements; i++) {
+			assertEquals(String.valueOf(i), sequence[i - 1]);
+		}
 	}
 
 	@Test
 	public void shouldBeCorrectAllNumbersDivisibleBy5() {
 		for(int i = 5; (i % 15 != 0) && i <= totalElements; i += 5) {
 			assertEquals(TEXT_DIVISIBLE_BY_5, sequence[i - 1]);
+		}
+	}
+
+	@Test
+	public void shouldBeCorrectAllNumbersDivisibleBy3() {
+		for(int i = 3; (i % 15 != 0) && i <= totalElements; i += 3) {
+			assertEquals(TEXT_DIVISIBLE_BY_3, sequence[i - 1]);
+		}
+	}
+
+	@Test
+	public void shouldBeCorrectAllNumbersDivisibleByBoth() {
+		for(int i = 15; i <= totalElements; i += 15) {
+			assertEquals(TEXT_DIVISIBLE_BY_3_AND_5, sequence[i - 1]);
 		}
 	}
 
