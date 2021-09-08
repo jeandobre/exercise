@@ -7,9 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class CountryQuery {
+public class CountryQueryTest {
 
 	private final CountryRepository repository = new TestCountryRepository();
+	private final  CountryQuery countryQuery = new CountryQuery(repository);
 
 	@Before
 	public void init() {
@@ -21,22 +22,25 @@ public class CountryQuery {
 	}
 
 	@Test
-	public void shouldBeFoundedWithSuccess() throws Exception {
-		String languageRequired = "nf";
+	public void shouldBeFoundedWithSuccess() {
+
 		Country countryEqual = new Country("BE");
-		Country country = repository.findByLanguage(languageRequired);
+		Country country = countryQuery.findCountryByLanguage("nf");
 
 		assertEquals(countryEqual, country);
 	}
 
 	@Test
 	public void shouldNotBeFounded() {
-		String languageRequired = "br";
-		try {
-			repository.findByLanguage(languageRequired);
-			fail("Should be fail: Country Not Found!");
-		} catch (Exception e) {
-			assertEquals( "Country Not Found!", e.getMessage());
-		}
+
+		Country country = countryQuery.findCountryByLanguage("br");
+		assertNull(country);
 	}
+
+	@Test
+	public void shouldBeCorrectTotalized(){
+
+		assertEquals(Integer.valueOf(5), countryQuery.numberOfCountries());
+	}
+
 }

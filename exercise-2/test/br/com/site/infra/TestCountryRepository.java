@@ -27,7 +27,7 @@ public final class TestCountryRepository implements CountryRepository {
 
 	@Override
 	public Integer total() {
-		return null;
+		return this.list.size();
 	}
 
 	@Override

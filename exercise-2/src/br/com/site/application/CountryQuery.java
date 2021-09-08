@@ -11,11 +11,15 @@ public class CountryQuery {
 		this.repository = repository;
 	}
 
+	public Integer numberOfCountries() {
+		return repository.total();
+	}
+
 	public Country findCountryByLanguage(String language) {
 		try {
 			return repository.findByLanguage(language);
 		} catch (Exception e) {
-			e.printStackTrace(); //Correct is log this error
+			//e.printStackTrace(); //The correct is logging this error
 			return null;
 		}
 	}
