@@ -1,4 +1,4 @@
-package br.com.site;
+package br.com.site.domain;
 
 import static org.junit.Assert.*;
 import br.com.site.domain.Country;
@@ -24,5 +24,10 @@ public class CountryTest {
 		assertEquals("[nl, nf, de]", countries.get(1).languages().toString());
 		assertEquals("ES", countries.get(4).name());
 		assertEquals("[es]", countries.get(4).languages().toString());
+	}
+
+	@Test
+	public void shouldBePopulatedByJson() {
+		
 	}
 }
