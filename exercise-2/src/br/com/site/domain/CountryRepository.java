@@ -10,5 +10,5 @@ public interface CountryRepository {
 
 	Integer total();
 
-	Country findByLanguage(String language) throws Exception;
+	Country findMostLanguage(String language) throws Exception;
 }

@@ -23,7 +23,7 @@ public class MemCountryRepositoryTest {
 	public void shouldBeFoundedWithSuccess() throws Exception {
 		String languageRequired = "nf";
 		Country countryEqual = new Country("BE");
-		Country country = this.repository.findByLanguage(languageRequired);
+		Country country = this.repository.findMostLanguage(languageRequired);
 
 		assertEquals(countryEqual, country);
 	}
@@ -32,7 +32,7 @@ public class MemCountryRepositoryTest {
 	public void shouldNotBeFounded() {
 		String languageRequired = "br";
 		try {
-			this.repository.findByLanguage(languageRequired);
+			this.repository.findMostLanguage(languageRequired);
 			fail("Should be fail: Country Not Found!");
 		} catch (Exception e) {
 			assertEquals( "Country Not Found!", e.getMessage());

@@ -15,9 +15,9 @@ public class CountryQuery {
 		return repository.total();
 	}
 
-	public Country findCountryByLanguage(String language) {
+	public Country findCountryMostLanguage(String language) {
 		try {
-			return repository.findByLanguage(language);
+			return repository.findMostLanguage(language);
 		} catch (Exception e) {
 			//e.printStackTrace(); //The correct is logging this error
 			return null;

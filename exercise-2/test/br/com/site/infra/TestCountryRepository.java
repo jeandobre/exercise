@@ -31,7 +31,7 @@ public final class TestCountryRepository implements CountryRepository {
 	}
 
 	@Override
-	public Country findByLanguage(String language) throws Exception {
+	public Country findMostLanguage(String language) throws Exception {
 		for(Country country: this.list){
 			for(Language lang: country.languages()) {
 				if(lang.ietfTag().equals(language)) return country;

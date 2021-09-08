@@ -37,7 +37,7 @@ public final class MemCountryRepository implements CountryRepository {
 	}
 
 	@Override
-	public Country findByLanguage(String language) {
+	public Country findMostLanguage(String language) {
 		for(Country country: this.list){
 			for(Language lang: country.languages()) {
 				if(lang.ietfTag().equals(language)) return country;

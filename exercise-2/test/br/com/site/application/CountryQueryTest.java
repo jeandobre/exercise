@@ -10,37 +10,34 @@ import static org.junit.Assert.*;
 public class CountryQueryTest {
 
 	private final CountryRepository repository = new TestCountryRepository();
-	private final  CountryQuery countryQuery = new CountryQuery(repository);
+	private final CountryQuery countryQuery = new CountryQuery(repository);
 
 	@Before
 	public void init() {
-		repository.insert(new Country("US", "en"));
-		repository.insert(new Country("BE", "nl", "nf", "de"));
-		repository.insert(new Country("NL", "nl", "fy"));
-		repository.insert(new Country("DE", "de"));
-		repository.insert(new Country("ES", "es"));
+		this.repository.insert(new Country("US", "en"));
+		this.repository.insert(new Country("BE", "nl", "nf", "de"));
+		this.repository.insert(new Country("NL", "nl", "fy"));
+		this.repository.insert(new Country("DE", "de"));
+		this.repository.insert(new Country("ES", "es"));
 	}
 
 	@Test
-	public void shouldBeFoundedWithSuccess() {
+	public void shouldBeFoundCountryByMostLanguageWithSuccess() {
+		Country countryCorrect = new Country("BE");
+		Country country = this.countryQuery.findCountryMostLanguage("nf");
 
-		Country countryEqual = new Country("BE");
-		Country country = countryQuery.findCountryByLanguage("nf");
-
-		assertEquals(countryEqual, country);
+		assertEquals(countryCorrect, country);
 	}
 
 	@Test
 	public void shouldNotBeFounded() {
-
-		Country country = countryQuery.findCountryByLanguage("br");
+		Country country = this.countryQuery.findCountryMostLanguage("br");
 		assertNull(country);
 	}
 
 	@Test
-	public void shouldBeCorrectTotalized(){
-
-		assertEquals(Integer.valueOf(5), countryQuery.numberOfCountries());
+	public void shouldBeCountedCorrect(){
+		Integer total = this.repository.total();
+		assertEquals(total, this.countryQuery.numberOfCountries());
 	}
-
 }
