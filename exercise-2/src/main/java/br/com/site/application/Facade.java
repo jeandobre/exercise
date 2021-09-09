@@ -6,9 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Facade {
 
@@ -31,13 +30,21 @@ public class Facade {
 			.orElse(null);
 	}
 
-	public String mostCommonLanguagesOfAllCountries() {
-		return this.countries
+	public List<String> mostCommonLanguagesOfAllCountries() {
+
+		Map<String, Long> languageByTotal = this.countries
 				.stream()
 				.flatMap(country -> country.languages().stream())
-				.max(Comparator.comparing(String::valueOf))
-				.get();
+				.collect(Collectors.groupingBy(String::valueOf, Collectors.counting()));
 
+		Long max = Collections.max(languageByTotal.entrySet(), Map.Entry.comparingByValue()).getValue();
+
+		return languageByTotal
+				.entrySet()
+				.stream()
+				.filter(lang -> Objects.equals(lang.getValue(), max))
+				.map(Map.Entry::getKey)
+				.collect(Collectors.toList());
 	}
 
 	public Integer totalLanguageOfAll() {

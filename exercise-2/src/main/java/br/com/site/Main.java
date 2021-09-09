@@ -32,7 +32,6 @@ public class Main {
 				countryHighestNumberLanguages.country(),
 				countryHighestNumberLanguages.totalLanguages());
 
-		String mostCommonLanguage = facade.mostCommonLanguagesOfAllCountries();
-		System.out.println("The most common official language(s), of all coutries are " + mostCommonLanguage);
+		System.out.println("The most common official language(s), of all coutries are " + facade.mostCommonLanguagesOfAllCountries());
 	}
 }
