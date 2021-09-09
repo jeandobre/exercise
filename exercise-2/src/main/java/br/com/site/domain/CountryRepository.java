@@ -4,11 +4,9 @@ import java.util.List;
 
 public interface CountryRepository {
 
-	void insert(Country country);
-
-	List<Country> getAll();
+	void insertFromJson(String jsonStringify);
 
 	Integer total();
 
-	Country findMostLanguage(String language) throws Exception;
+	Country findMostLanguage(String language);
 }

@@ -2,8 +2,10 @@ package br.com.site.infra;
 
 import br.com.site.domain.Country;
 import br.com.site.domain.CountryRepository;
-import br.com.site.domain.Language;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +24,11 @@ public final class MemCountryRepository implements CountryRepository {
 	}
 
 	@Override
-	public void insert(Country country) {
-		this.list.add(country);
-	}
+	public void insertFromJson(String jsonStringify) {
+		Gson gson = new Gson();
 
-	@Override
-	public List<Country> getAll() {
-		return null;
+		Type listType = new TypeToken<ArrayList<Country>>(){}.getType();
+		this.list = gson.fromJson(jsonStringify, listType);
 	}
 
 	@Override
@@ -38,11 +38,17 @@ public final class MemCountryRepository implements CountryRepository {
 
 	@Override
 	public Country findMostLanguage(String language) {
-		for(Country country: this.list){
-			for(Language lang: country.languages()) {
-				if(lang.ietfTag().equals(language)) return country;
+		int max = 0;
+		Country found = null;
+		for(Country country: this.list) {
+			if(country.languages().contains(language)) {
+				if(country.languages().size() > max) {
+					max = country.languages().size();
+					found = country;
+				}
 			}
 		}
-		return null;
+
+		return found;
 	}
 }
