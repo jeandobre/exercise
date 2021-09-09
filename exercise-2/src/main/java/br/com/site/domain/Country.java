@@ -31,4 +31,8 @@ public class Country {
 	public Integer totalLanguages() {
 		return this.languages.size();
 	}
+
+	public List<String> languages() {
+		return Collections.unmodifiableList(this.languages);
+	}
 }

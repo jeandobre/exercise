@@ -27,8 +27,10 @@ public class Main {
 
 		Facade facade = new Facade(repository);
 		Country countryHighestNumberLanguages = facade.findCountryHighestNumberLanguages();
-		System.out.format("The country with the highest number of official language is %s with %d languages",
+		System.out.format("The country with the highest number of official language is %s with %d languages\n",
 				countryHighestNumberLanguages.country(),
 				countryHighestNumberLanguages.totalLanguages());
+
+		System.out.println(facade.mostCommonLanguagesOfAllCountries());
 	}
 }
