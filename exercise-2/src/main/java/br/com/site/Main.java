@@ -18,8 +18,11 @@ public class Main {
 		repository.insertFromJson(inputJson);
 
 		System.out.format("Number of the countries is %d\n", repository.total());
+
 		Country country = repository.findMostLanguage("de");
 		System.out.println("Country most official language where officially speaks 'de' is " + country.country());
+
+		System.out.format("Count all official languages in all countries is %d\n", repository.totalLanguageOfAll());
 
 	}
 }

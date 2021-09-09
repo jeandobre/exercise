@@ -1,7 +1,5 @@
 package br.com.site.domain;
 
-import java.util.List;
-
 public interface CountryRepository {
 
 	void insertFromJson(String jsonStringify);
@@ -9,4 +7,6 @@ public interface CountryRepository {
 	Integer total();
 
 	Country findMostLanguage(String language);
+
+	Integer totalLanguageOfAll();
 }

@@ -41,14 +41,18 @@ public final class MemCountryRepository implements CountryRepository {
 		int max = 0;
 		Country found = null;
 		for(Country country: this.list) {
-			if(country.languages().contains(language)) {
-				if(country.languages().size() > max) {
-					max = country.languages().size();
-					found = country;
-				}
+			if(country.contains(language) && country.totalLanguages() > max) {
+				max = country.totalLanguages();
+				found = country;
 			}
 		}
 
 		return found;
+	}
+
+
+	@Override
+	public Integer totalLanguageOfAll() {
+		return this.list.stream().map(Country::totalLanguages).findFirst().orElse(0);
 	}
 }
