@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -32,6 +33,11 @@ public final class MemCountryRepository implements CountryRepository {
 	}
 
 	@Override
+	public List<Country> getAll() {
+		return Collections.unmodifiableList(this.list);
+	}
+
+	@Override
 	public Integer total() {
 		return this.list.size();
 	}
@@ -50,9 +56,8 @@ public final class MemCountryRepository implements CountryRepository {
 		return found;
 	}
 
-
 	@Override
 	public Integer totalLanguageOfAll() {
-		return this.list.stream().map(Country::totalLanguages).findFirst().orElse(0);
+		return this.list.stream().reduce(0, (partial, country) -> partial + country.totalLanguages(), Integer::sum);
 	}
 }

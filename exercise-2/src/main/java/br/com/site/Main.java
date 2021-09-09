@@ -1,5 +1,6 @@
 package br.com.site;
 
+import br.com.site.application.Facade;
 import br.com.site.domain.Country;
 import br.com.site.domain.CountryRepository;
 import br.com.site.infra.MemCountryRepository;
@@ -24,5 +25,10 @@ public class Main {
 
 		System.out.format("Count all official languages in all countries is %d\n", repository.totalLanguageOfAll());
 
+		Facade facade = new Facade(repository);
+		Country countryHighestNumberLanguages = facade.findCountryHighestNumberLanguages();
+		System.out.format("The country with the highest number of official language is %s with %d languages",
+				countryHighestNumberLanguages.country(),
+				countryHighestNumberLanguages.totalLanguages());
 	}
 }
