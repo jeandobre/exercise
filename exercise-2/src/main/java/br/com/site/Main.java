@@ -18,19 +18,21 @@ public class Main {
 
 		repository.insertFromJson(inputJson);
 
-		System.out.format("Number of the countries is %d\n", repository.total());
+		Facade facade = new Facade(repository);
 
-		Country country = repository.findMostLanguage("de");
+		System.out.format("Number of the countries is %d\n", facade.totalNumberCoutries());
+
+		Country country = facade.findMostLanguage("de");
 		System.out.println("Country most official language where officially speaks 'de' is " + country.country());
 
-		System.out.format("Count all official languages in all countries is %d\n", repository.totalLanguageOfAll());
+		System.out.format("Count all official languages in all countries is %d\n", facade.totalLanguageOfAll());
 
-		Facade facade = new Facade(repository);
 		Country countryHighestNumberLanguages = facade.findCountryHighestNumberLanguages();
 		System.out.format("The country with the highest number of official language is %s with %d languages\n",
 				countryHighestNumberLanguages.country(),
 				countryHighestNumberLanguages.totalLanguages());
 
-		System.out.println(facade.mostCommonLanguagesOfAllCountries());
+		String mostCommonLanguage = facade.mostCommonLanguagesOfAllCountries();
+		System.out.println("The most common official language(s), of all coutries are " + mostCommonLanguage);
 	}
 }

@@ -9,8 +9,4 @@ public interface CountryRepository {
 	List<Country> getAll();
 
 	Integer total();
-
-	Country findMostLanguage(String language);
-
-	Integer totalLanguageOfAll();
 }

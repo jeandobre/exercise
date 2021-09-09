@@ -41,23 +41,4 @@ public final class MemCountryRepository implements CountryRepository {
 	public Integer total() {
 		return this.list.size();
 	}
-
-	@Override
-	public Country findMostLanguage(String language) {
-		int max = 0;
-		Country found = null;
-		for(Country country: this.list) {
-			if(country.contains(language) && country.totalLanguages() > max) {
-				max = country.totalLanguages();
-				found = country;
-			}
-		}
-
-		return found;
-	}
-
-	@Override
-	public Integer totalLanguageOfAll() {
-		return this.list.stream().reduce(0, (partial, country) -> partial + country.totalLanguages(), Integer::sum);
-	}
 }
