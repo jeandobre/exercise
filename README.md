@@ -1,4 +1,4 @@
-# exercise from Visual Nuts 
+# Several courses about Java spring
 
 -----------
 The two projects are a maven project. 
