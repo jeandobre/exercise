@@ -1,0 +1,39 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+  <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+  <h1 th:text="${title}">This title will be replaced</h1>
+  <div id="app">
+  	<Button name="btnOk" title="Clique neste botão" class="btn btn-info" @click="alert('oi')">
+  		OK
+  	</Button>
+  	
+  	<PrimaryButton name="btnNew" title="Clique neste botão" @click="alert('oi')">
+  		Novo registro
+  	</PrimaryButton>
+  	
+  	<Navigation info="teste"></Navigation>
+  </div>
+  
+  <script type="text/javascript"
+			th:src="@{~/atoms/Navigation.vue.js}"></script>
+			
+  <script type="text/javascript"
+			th:src="@{~/atoms/Button.vue.js}"></script>
+			
+<script type="text/javascript"
+			th:src="@{~/atoms/PrimaryButton.vue.js}"></script>
+  <script>  
+    Vue.config.devtools = true;
+    new Vue({
+      el: "#app"    
+    })
+  </script>
+  </body>
+</html>
