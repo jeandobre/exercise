@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    password: outra-senha
+    username: root-dev
+    url: jdbc:mysql://localhost:3306/alura-fornecedor
