@@ -4,7 +4,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate: 
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
   datasource:
     password: Xx9Z55buew9_
     username: root
